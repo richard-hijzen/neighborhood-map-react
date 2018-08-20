@@ -1,0 +1,127 @@
+/* App Style */
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.App-title{
+  color: white;
+  padding: 15px;
+  margin: 0;
+}
+
+.App-header{
+  color: white;
+  background-color: #0396A6;
+  height: 10vh;
+}
+
+.headerMenu {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  padding: 1em;
+}
+
+.headerMenu svg{
+  width: 32px;
+  fill: #E0E0E0;
+}
+
+/* Map Style */
+.mapError-container{
+  padding: 10px;
+  font-size: 20px;
+}
+
+.map-container{
+    width: 80%;
+    height: 90vh;
+    left: 20%;
+}
+
+.mapToggled {
+  width: 100%;
+  height: 90vh;
+}
+
+/* Location list Style */
+.LocationList-container{
+  background-color:white;
+  width: 20%;
+  left: 0px;
+  top: 78px;
+  position: absolute;
+}
+
+.toggled {
+  display: none;
+}
+
+.locationList{
+   padding: 10px;
+   display: block;
+   flex-wrap: wrap;
+   text-align: left;
+}
+
+.locationList li{
+   font-size: 1.3em;
+   padding: 10px 15px;
+   list-style: none;
+}
+
+.locationList li:hover{
+  background: #19A6FF;
+  cursor: pointer;
+}
+
+input {
+  width: 65%;
+  border: 2px solid gray;
+  position: relative;
+  padding: 10px 15px;
+  margin: 10px 0px;
+  font-size: 1.25em;
+}
+
+
+@media screen and (max-width:650px){
+
+  .App-header {
+    height: 15vh;
+  }
+
+  .App-header h1 {
+    margin-right: 10%;
+  }
+  
+  .LocationList-container{
+    width: 40%;
+    top: 15vh;
+  }
+
+  .map-container {
+    left: 40%;
+    width: 60%;
+    height: 85vh;
+  }
+
+  .mapToggled {
+    height: 85vh;
+  }
+}
+
+@media screen and (min-width: 651px) and (max-width:1150px){
+
+  .LocationList-container {
+    width: 30%;
+  }
+
+  .map-container {
+    left: 30%;
+    width: 70%;
+  }
+
+}
