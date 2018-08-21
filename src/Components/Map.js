@@ -238,6 +238,10 @@ class Map extends Component {
       if(selectedMarker && selectedMarker[0] && selectedLocation && selectedLocation[0]){
         var data =  selectedLocation[0].infoWindowData ? selectedLocation[0].infoWindowData :"sorry there are no data";
         this.markerInfoWindow(selectedMarker[0], infoWindow, data);
+        selectedMarker[0].setAnimation(window.google.maps.Animation.BOUNCE);
+        setTimeout(function() {
+          selectedMarker[0].setAnimation(null);
+        }, 2000);
       }
     }
 
