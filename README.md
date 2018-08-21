@@ -27,4 +27,19 @@ If you want to try the app you can do the following steps
 * in the project folder run npm install to install all the dependencies
 * run npm start to start the development server
 
+NOTE: The service workers for this app will only cache the site when it is in production mode
+
+## How to run this app in production mode
+
+* Go to the root directory of the app.
+* Give the command npm run build in the terminal.
+
+This will create a production build of the app in the build/ folder of the project.
+
+For environments using Node, the easiest way to handle this would be to install serve and let it handle the rest:
+
+* npm install -g serve
+* serve -s build
+
+
 Now you are ready to test the app.
