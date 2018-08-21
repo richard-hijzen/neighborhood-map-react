@@ -43,8 +43,10 @@ class Map extends Component {
   }
   /* ============/ MARKER /============*/
   /* In componentDidUpdate: I create markers & information window for the location */
-  componentDidUpdate = () => {
-    this.CreateMarker();
+  componentDidUpdate = (successfulMapLoaded) => {
+    if(successfulMapLoaded) {
+      this.CreateMarker();
+    }
   }
 
   CreateMarker =()=>{
@@ -119,26 +121,12 @@ class Map extends Component {
   }
 
   /* ====/ Search /==== */
-  // TODO: what clearArray method : this method is for the search
-  // clearArray = (array) => {
-  //   while (array.length > 0) {
-  //     array.pop();
-  //   }
-  // }
-
   clearSearchArray = (array) => {
     while (array.length > 0) {
       array.pop();
     }
   }
 
-  /* close all opened marker and clear the marker array */
-  //   clearMarker = () => {
-  //   for (let marker of this.state.markers) {
-  //     marker.setMap(null);
-  //   }
-  //   this.clearSearchArray(this.state.markers)
-  // }
   /* close all opened InfoWindow and clear the InfoWindow array */
   clearInfoWindow = () => {
     for (let infoWindow of this.state.allInfoWindow) {
