@@ -5,7 +5,7 @@ class NavSearch extends Component {
     render() {
         return(
             <div className="search-bar">
-            <input type="text" tabIndex="0" placeholder="search"
+            <input type="text" tabIndex="0" placeholder="search" aria-label="search"
              onChange={(event) => this.props.updateQuery(event.target.value.trim())}/>
             </div>
         )
