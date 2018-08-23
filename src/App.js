@@ -5,6 +5,7 @@ import {Locations} from './Components/locations' // import the locations.js file
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import LocationList from './Components/LocationList' // import LocationList Component
+import ErrorBoundary from './ErrorBoundary'
 
 class App extends Component {
 
@@ -34,7 +35,7 @@ class App extends Component {
 
 /* ===/ Start Render /=== */
   render() {
-
+    
     let show_locations // this variable is for check if the search is working or not
     // This is for search into the locations list
     if (this.state.location_query) {
@@ -58,10 +59,12 @@ class App extends Component {
       {
         // Run the  & send informtion to the Components
       }
+      <ErrorBoundary>
       <Map 
         Locations={show_locations} 
         item_select={this.state.item_select}
         mapCondition={this.state.mapCondition} />
+      </ErrorBoundary>
       <LocationList 
         Locations={show_locations} 
         updateQuery={this.updateQuery} 

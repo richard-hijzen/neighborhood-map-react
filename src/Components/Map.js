@@ -8,23 +8,27 @@ class Map extends Component {
     map: {},
     successfulMapLoaded: true,
     markers: [],
+    bounds: {},
     allInfoWindow: []
   }
+
+
   /* ====/ Google API Map/====*/
   /* In componentWillReceiveProps: recive the google map API & check if  was Succeed then setting and load the map*/
   componentWillReceiveProps = ({isScriptLoaded, isScriptLoadSucceed}) => {
     if (isScriptLoaded && !this.props.isScriptLoaded) {
-      if (isScriptLoadSucceed) {
-        this.google_map_api_load();
-      } else {
+      if (!isScriptLoadSucceed) {
         this.google_map_api_Not_loading();
+        
+      } else {
+        this.googleSuccess();
       }
     }
   }
 
-  google_map_api_load = ()=>{
+  googleSuccess = ()=>{
     console.log("map has been load"); // message for check if the map is work
-    // create a map & location (on that location is Jeddah City)
+    // create a map & location 
     const map_load = new window.google.maps.Map(document.getElementById('map'), {
       initialCenter: {
         lat: 51.9225,
@@ -34,7 +38,9 @@ class Map extends Component {
         styles: mapConfig.styles,
         mapTypeControl: mapConfig.mapTypeControl
     });
+
     this.setState({map: map_load});
+  
   }
 
   google_map_api_Not_loading=()=>{
@@ -43,11 +49,9 @@ class Map extends Component {
   }
   /* ============/ MARKER /============*/
   /* In componentDidUpdate: I create markers & information window for the location */
-  componentDidUpdate = (successfulMapLoaded) => {
-    if(successfulMapLoaded) {
-      this.CreateMarker();
-    }
-  }
+componentDidUpdate() {
+  this.CreateMarker();
+}
 
   CreateMarker =()=>{
     let position,title,marker;
@@ -57,7 +61,6 @@ class Map extends Component {
       maxWidth: 300
     }); // information window when the user press to the place icon in the map
     var bounds = new window.google.maps.LatLngBounds(); // ?
-
 
     if (this.state.successfulMapLoaded) {
       this.clearLocationMarker(); // clear the marker function
@@ -78,7 +81,7 @@ class Map extends Component {
         }
 
         marker = new window.google.maps.Marker(pref);
-
+        
         // here for showing the places information when the user press the icon
         marker.addListener('click', function() {
           var data =  Locations[i].infoWindowData ? Locations[i].infoWindowData : "sorry there are no data";
@@ -89,7 +92,7 @@ class Map extends Component {
         bounds.extend(marker.position);
       }
 
-      this.state.map.fitBounds(bounds); // ?
+   this.state.map.fitBounds(bounds);
 
       if (this.props.item_select) {
         this.openSelectedInfoWindow(infoWindow);
@@ -234,11 +237,12 @@ class Map extends Component {
     }
 
   render() {
-    return (
-      this.state.successfulMapLoaded
-      ? (<div className={this.props.mapCondition ? "map-container" : "mapToggled" } id="map" role="application" tabIndex="-1" > </div>)
-       : (<div className="mapError-container" role="application" tabIndex="-1" >Error  in loading map</div>))
+  
+      return (
+
+        this.state.successfulMapLoaded
+        ? (<div className={this.props.mapCondition ? "map-container" : "mapToggled" } id="map" role="application" tabIndex="-1" > </div>)
+         : (<div className="mapError-container" role="application" tabIndex="-1" >Error  in loading map</div>))
   }
 }
-
 export default scriptLoader(["https://maps.googleapis.com/maps/api/js?key=AIzaSyAjxo5-hmmR5YxGHsZxCZR2ud3vNeZ_y-k&v=3"])(Map)
