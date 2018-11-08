@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.4.2",
+    "react": "^16.6.1",
     "react-async-script-loader": "^0.3.0",
-    "react-dom": "^16.4.2",
+    "react-dom": "^16.6.1",
     "react-scripts": "1.1.4",
     "sort-by": "^1.2.0"
   },
